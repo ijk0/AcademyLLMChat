@@ -163,3 +163,10 @@ cython_debug/
 
 *.pdf
 /test/
+
+data/
+output/
+sqlite/
+.doc/
+log/
+docker/milvus/volumes/

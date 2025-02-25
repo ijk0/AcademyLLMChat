@@ -1,0 +1,36 @@
+[project]
+name = "academyllmchat"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "loguru~=0.7.2",
+    "tqdm~=4.66.2",
+    "lxml",
+    "pyyaml",
+    "beautifulsoup4",
+    "requests[socks]",
+    "urllib3",
+    "httpx[socks]",
+    "httpx-sse",
+    "PyJWT",
+    "werkzeug~=3.0.4",
+    "markdownify",
+    "numpy~=1.26.3",
+    "pandas~=2.2.0",
+    "langchain==0.3.0",
+    "langchain-core==0.3.1",
+    "langchain_community==0.3.0",
+    "langchain-openai==0.2.0",
+    "langgraph==0.2.22",
+    "langchain_text_splitters",
+    "transformers",
+    "lark",
+    "langchain-milvus==0.1.5",
+    "pymilvus==2.4.5",
+    "duckduckgo_search~=6.2.11",
+    "streamlit==1.42.2",
+    "watchdog",
+    "torch"
+]

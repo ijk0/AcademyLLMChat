@@ -1,4 +1,5 @@
 import sqlite3
+import os
 from datetime import datetime
 from typing import Any, Generic, Iterator, List, Optional, Sequence, Tuple, TypeVar
 
@@ -43,6 +44,9 @@ class SqliteBaseStore(BaseStore[str, V], Generic[V]):
         self.__create_tables_if_not_exists()
 
     def __connect(self) -> sqlite3.Connection:
+        # Ensure the directory exists
+        print(self.connection_string)
+        os.makedirs(os.path.dirname(self.connection_string), exist_ok=True)
         conn = sqlite3.connect(self.connection_string, **self.engine_args, check_same_thread=False)
         return conn
 
@@ -167,6 +171,8 @@ class ReferenceStore:
         self.__post_init__()
 
     def __connect(self) -> sqlite3.Connection:
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(self.connection_string), exist_ok=True)
         conn = sqlite3.connect(self.connection_string, check_same_thread=False)
         return conn
 
@@ -255,6 +261,8 @@ class ProfileStore:
         self._conn = self.__connect()
 
     def __connect(self) -> sqlite3.Connection:
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(self.connection_string), exist_ok=True)
         conn = sqlite3.connect(self.connection_string, check_same_thread=False)
         return conn
 
@@ -683,16 +691,16 @@ def main() -> None:
     )
 
     with ProfileStore(
-            connection_string='D:/program/github/AcademyLLMChat/data/user/user_info.db'
+            connection_string='/Users/qyanke/Workspace/Cline/AcademyLLMChat/data/user/user_info.db'
     ) as profile_store:
-        # profile_store.init_tables()
-        # profile_store.create_user(user)
+        profile_store.init_tables()
+        profile_store.create_user(user)
 
         # user = profile_store.valid_user('test', '12345678')
         user_list = profile_store.get_users()
         print(user_list)
         #
-        # print(profile_store.create_project(project1))
+        print(profile_store.create_project(project1))
         # print(profile_store.create_project(project2))
         # print(profile_store.create_project(project2))
 
